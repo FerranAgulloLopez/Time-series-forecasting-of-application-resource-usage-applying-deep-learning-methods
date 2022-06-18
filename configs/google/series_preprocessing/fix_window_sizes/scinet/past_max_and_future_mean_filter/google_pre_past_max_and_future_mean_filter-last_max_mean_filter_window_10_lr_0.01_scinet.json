@@ -1,0 +1,110 @@
+{
+  "data": {
+    "source": {
+      "name": "google_2019",
+      "optimized_preprocess": true,
+      "directory_path": "../input/data/second_preprocess_standarized",
+      "time_feature": "time_stamp",
+      "target_feature": "cpu_maximum_usage",
+      "batch_size": 512,
+      "preprocessing_steps": {
+        "global": [{
+            "name": "sum",
+            "values": [0.3787201, 0.38921303, 0.34617429, 2.82996245, 0.4688104 ,
+       0.46957   , 0.48577522, 0.7966062, 2.2326829 , 0.34009445,
+       0.34373566, 0.34816563, 0.35904799, 0.46534742]
+          }],
+        "values": [{
+            "name": "log_transformation",
+            "min": -4
+          },{
+            "name": "mean_max_moving_average_inverse_strange_5",
+            "window_size": 10
+          }],
+        "target": [{
+            "name": "log_transformation",
+            "min": -4
+          },{
+            "name": "max_moving_average_inverse",
+            "window_size": 10
+          }, {
+            "name": "mean_moving_average_pre",
+            "window_size": 10
+          }]
+      },
+      "split": {
+        "name": "random",
+        "train_size": 0.7,
+        "val_size": 0.15
+      }
+    },
+    "type": {
+      "name": "full_values_unbiased_intervals",
+      "log_transformation": true,
+      "intervals": [0.0     , 0.03125, 0.0625 , 0.09375, 0.125  , 0.15625, 0.1875 ,
+       0.21875, 0.25   , 0.28125, 0.3125 , 0.34375, 0.375  , 0.40625,
+       0.4375 , 0.46875, 0.5    , 0.53125, 0.5625 , 0.59375, 0.625  ,
+       0.65625, 0.6875 , 0.71875, 0.75   , 0.78125, 0.8125 , 0.84375,
+       0.875  , 0.90625, 0.9375 , 0.96875, 1.0     , 1.03125, 1.0625 ,
+       1.09375, 1.125  , 1.15625, 1.1875 , 1.21875, 1.25   , 1.28125,
+       1.3125 , 1.34375, 1.375  , 1.4    , 2.4    , 3.4    , 4.4    ,
+       5.4    , 6.4    , 7.4    , 8.4    , 9.4    ],
+      "shuffle": true,
+      "batch_size": 2048,
+      "lag_size": 64,
+      "prediction_size": 1,
+      "data_loader": {
+        "num_workers": 6,
+        "drop_last": false
+      },
+      "output_visualization": {
+        "train_samples": 3,
+        "val_samples": 6,
+        "test_samples": 6,
+        "rate_predictions": 2,
+        "initial_color": "#c0e0de",
+        "values_color": "gray",
+        "target_color": "#3c474b",
+        "prediction_color_1": "#4f7cac",
+        "prediction_color_2": "#371e30"
+      }
+    }
+  },
+  "model": {
+    "type": {
+      "name": "neural_network",
+      "train_info": {
+        "number_epochs": 70,
+        "optimizer": {
+          "name": "Adam",
+          "args": {
+            "lr": 0.01,
+            "amsgrad": true
+          }
+        },
+        "loss_function": {
+          "name": "Default",
+          "criterion": "cross_entropy"
+        }
+      },
+      "transforms": [
+        {
+          "name": "weight_init",
+          "type": "gaussian",
+          "args": {
+            "mean": 0,
+            "std": 1
+          }
+        }
+      ]
+    },
+    "network": {
+      "name": "SCINet",
+      "args": {"num_levels": 2, "dropout": 0}
+    }
+  },
+  "logging": "INFO",
+  "save_model": true,
+  "manual_seed": 0,
+  "device": "cuda"
+}

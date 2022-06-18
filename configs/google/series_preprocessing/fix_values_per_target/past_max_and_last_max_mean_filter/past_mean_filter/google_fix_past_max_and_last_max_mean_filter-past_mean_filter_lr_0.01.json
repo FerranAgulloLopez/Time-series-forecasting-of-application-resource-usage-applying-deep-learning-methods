@@ -1,0 +1,132 @@
+{
+  "data": {
+    "source": {
+      "name": "google_2019",
+      "optimized_preprocess": true,
+      "directory_path": "../input/data/second_preprocess_standarized",
+      "time_feature": "time_stamp",
+      "target_feature": "cpu_maximum_usage",
+      "batch_size": 512,
+      "preprocessing_steps": {
+        "global": [],
+        "values": [{
+            "name": "mean_moving_average_inverse",
+            "window_size": 5
+          }],
+        "target": [{
+            "name": "max_moving_average_inverse",
+            "window_size": 3
+          }, {
+            "name": "mean_max_moving_average_inverse_strange_5",
+            "window_size": 5
+          }]
+      },
+      "split": {
+        "name": "random",
+        "train_size": 0.7,
+        "val_size": 0.15
+      }
+    },
+    "type": {
+      "name": "full_values_unbiased_intervals",
+      "intervals": [
+        -1.0,
+        -0.75,
+        -0.5,
+        -0.25,
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0,
+        1.25,
+        1.5,
+        1.75,
+        2.0,
+        2.25,
+        2.5,
+        2.75,
+        3.0,
+        3.25,
+        3.5,
+        3.75,
+        4.0,
+        4.25,
+        4.5,
+        4.75,
+        5.0,
+        5.25,
+        5.5,
+        5.75,
+        6.0,
+        6.25,
+        6.5,
+        6.75,
+        7.0,
+        7.25,
+        7.5,
+        7.75,
+        8.0,
+        8.25,
+        8.5,
+        8.75
+      ],
+      "shuffle": true,
+      "batch_size": 1024,
+      "lag_size": 512,
+      "prediction_size": 1,
+      "data_loader": {
+        "num_workers": 6,
+        "drop_last": false
+      },
+      "output_visualization": {
+        "train_samples": 3,
+        "val_samples": 6,
+        "test_samples": 6,
+        "rate_predictions": 2,
+        "initial_color": "#c0e0de",
+        "values_color": "gray",
+        "target_color": "#3c474b",
+        "prediction_color_1": "#4f7cac",
+        "prediction_color_2": "#371e30"
+      }
+    }
+  },
+  "model": {
+    "type": {
+      "name": "neural_network",
+      "train_info": {
+        "number_epochs": 70,
+        "optimizer": {
+          "name": "Adam",
+          "args": {
+            "lr": 0.01,
+            "amsgrad": true
+          }
+        },
+        "loss_function": {
+          "name": "Default",
+          "criterion": "cross_entropy"
+        }
+      },
+      "transforms": [
+        {
+          "name": "weight_init",
+          "type": "gaussian",
+          "args": {
+            "mean": 0,
+            "std": 1
+          }
+        }
+      ]
+    },
+    "network": {
+      "name": "DeepConvolutionalClassifierInceptionBranch3NoEncBigBottleneckComposed",
+      "args": {}
+    }
+  },
+  "logging": "INFO",
+  "save_model": true,
+  "manual_seed": 0,
+  "device": "cuda"
+}

@@ -1,0 +1,82 @@
+{
+  "data": {
+    "source": {
+      "name": "google_2019",
+      "optimized_preprocess": true,
+      "directory_path": "../input/data/second_preprocess_standarized",
+      "time_feature": "time_stamp",
+      "target_feature": "cpu_maximum_usage",
+      "batch_size": 512,
+      "preprocessing_steps": {
+        "global": [],
+        "values": [],
+        "target": []
+      },
+      "split": {
+        "name": "random",
+        "train_size": 0.7,
+        "val_size": 0.15
+      }
+    },
+    "type": {
+      "name": "full_values_unbiased_intervals",
+      "intervals": [-0.4, -0.36875, -0.3375, -0.30625, -0.275, -0.24375, -0.2125, -0.18125, -0.15, -0.11875, -0.0875, -0.05625, -0.025, 0.00625, 0.0375, 0.06875, 0.1, 0.13125, 0.1625, 0.19375, 0.225, 0.25625, 0.2875, 0.31875, 0.35, 0.38125, 0.4125, 0.44375, 0.475, 0.50625, 0.5375, 0.56875, 0.6, 0.63125, 0.6625, 0.69375, 0.725, 0.75625, 0.7875, 0.81875, 0.85, 0.88125, 0.9125, 0.94375, 0.975, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      "shuffle": true,
+      "batch_size": 1024,
+      "lag_size": 512,
+      "prediction_size": 1,
+      "data_loader": {
+        "num_workers": 6,
+        "drop_last": false
+      },
+      "output_visualization": {
+        "train_samples": 3,
+        "val_samples": 6,
+        "test_samples": 6,
+        "rate_predictions": 2,
+        "initial_color": "#c0e0de",
+        "values_color": "gray",
+        "target_color": "#3c474b",
+        "prediction_color_1": "#4f7cac",
+        "prediction_color_2": "#371e30"
+      }
+    }
+  },
+  "model": {
+    "type": {
+      "name": "neural_network",
+      "train_info": {
+        "number_epochs": 70,
+        "optimizer": {
+          "name": "Adam",
+          "args": {
+            "lr": 0.01,
+            "amsgrad": true
+          }
+        },
+        "loss_function": {
+          "name": "Default",
+          "criterion": "cross_entropy"
+        }
+      },
+      "transforms": [
+        {
+          "name": "weight_init",
+          "type": "gaussian",
+          "args": {
+            "mean": 0,
+            "std": 1
+          }
+        }
+      ]
+    },
+    "network": {
+      "name": "DeepConvolutionalClassifierInceptionBranch3NoEncBigBottleneckComposed",
+      "args": {}
+    }
+  },
+  "logging": "INFO",
+  "save_model": true,
+  "manual_seed": 0,
+  "device": "cuda"
+}
