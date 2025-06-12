@@ -1,0 +1,17 @@
+{
+  "data": {
+    "name": "alibaba_2018",
+    "directory_path": "../data/alibaba_2018/data/third_preprocess_compressed_standarized",
+    "target_feature": "maximum_cpu_average_usage_relative",
+    "time_feature": "time_stamp",
+    "batch_size": 128,
+    "visualization": [
+      {
+        "name": "ChartMaxMinFeatures",
+        "chart_params": {}
+      }
+    ]
+  },
+  "manual_seed": 1,
+  "device": "cpu"
+}

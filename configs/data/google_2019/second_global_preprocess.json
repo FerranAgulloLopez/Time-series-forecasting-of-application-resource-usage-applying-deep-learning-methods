@@ -1,0 +1,79 @@
+{
+	"data": {
+		"source": {
+			"name": "google_2019",
+			"directory_path": "../data/google_2019_a/global_data/first_preprocess",
+			"time_feature": "time_stamp",
+			"batch_size": 128
+		},
+		"type": {
+			"name": "data_preprocess",
+			"output_directory_path": "../data/google_2019_a/global_data/second_preprocess",
+			"preprocessing_steps": [
+				{
+					"name": "replace_outliers_with_previous",
+					"features": [
+						{
+							"name": "cpu_average_usage",
+							"max": 0.02919
+						},
+						{
+							"name": "cpu_maximum_usage",
+							"max": 0.18805
+						},
+						{
+							"name": "cpu_random_sampled_usage",
+							"max": 0.03489
+						},
+						{
+							"name": "cpu_cycles_per_instruction",
+							"max": 6.90489
+						},
+						{
+							"name": "memory_average_usage",
+							"max": 0.03617
+						},
+						{
+							"name": "memory_maximum_usage",
+							"max": 0.03708
+						},
+						{
+							"name": "assigned_memory",
+							"max": 0.06901
+						},
+						{
+							"name": "page_cache_memory",
+							"max": 0.00293
+						},
+						{
+							"name": "memory_accesses_per_instruction",
+							"max": 0.03749
+						},
+						{
+							"name": "cpu_usage_distribution_20",
+							"max": 0.02069
+						},
+						{
+							"name": "cpu_usage_distribution_40",
+							"max": 0.02497
+						},
+						{
+							"name": "cpu_usage_distribution_60",
+							"max": 0.03074
+						},
+						{
+							"name": "cpu_usage_distribution_80",
+							"max": 0.04025
+						},
+						{
+							"name": "cpu_usage_distribution_100",
+							"max": 0.08635
+						}
+					]
+				}
+			]
+		}
+	},
+	"manual_seed": 1,
+	"device": "cpu"
+}

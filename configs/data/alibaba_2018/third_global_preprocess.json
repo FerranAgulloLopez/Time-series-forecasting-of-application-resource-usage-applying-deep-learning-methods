@@ -1,0 +1,40 @@
+{
+	"data": {
+		"source": {
+			"name": "alibaba_2018",
+			"directory_path": "../data/alibaba_2018/data/second_preprocess_compressed",
+			"time_feature": "time_stamp",
+			"target_feature": "maximum_cpu_average_usage_relative",
+			"batch_size": 128
+		},
+		"type": {
+			"name": "data_preprocess",
+			"output_directory_path": "../data/alibaba_2018/data/third_preprocess_compressed",
+			"preprocessing_steps": [
+				{
+					"name": "replace_outliers_with_previous",
+					"features": [
+						{
+							"name": "average_network_in",
+							"max": 0.738313962
+						},
+						{
+							"name": "maximum_network_in",
+							"max": 0.738414481
+						},
+						{
+							"name": "average_network_out",
+							"max": 0.743583375
+						},
+						{
+							"name": "maximum_network_out",
+							"max": 0.743679393
+						}
+					]
+				}
+			]
+		}
+	},
+	"manual_seed": 1,
+	"device": "cpu"
+}

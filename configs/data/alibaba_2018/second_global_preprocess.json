@@ -1,0 +1,32 @@
+{
+	"data": {
+		"source": {
+			"name": "alibaba_2018",
+			"directory_path": "../data/alibaba_2018/data/first_preprocess_compressed",
+			"target_feature": "maximum_cpu_average_usage_relative",
+			"time_feature": "time_stamp",
+			"batch_size": 128
+		},
+		"type": {
+			"name": "data_preprocess",
+			"output_directory_path": "../data/alibaba_2018/data/second_preprocess_compressed",
+			"preprocessing_steps": [
+				{
+					"name": "delete_time_series_with_many_nan_values",
+					"features": [
+						{
+							"name":  "average_cpu_average_usage_relative",
+							"max_nans_percentage": 0.00000001
+						},
+						{
+							"name":  "maximum_cpu_average_usage_relative",
+							"max_nans_percentage": 0.00000001
+						}
+					]
+				}
+			]
+		}
+	},
+	"manual_seed": 1,
+	"device": "cpu"
+}

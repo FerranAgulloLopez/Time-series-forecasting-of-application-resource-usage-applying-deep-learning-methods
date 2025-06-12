@@ -1,0 +1,85 @@
+{
+	"data": {
+		"source": {
+			"name": "google_2019",
+			"directory_path": "../data/google_2019_a/global_data/extracted",
+			"time_feature": "time_stamp",
+			"batch_size": 128
+		},
+		"type": {
+			"name": "data_preprocess",
+			"output_directory_path": "../data/google_2019_a/global_data/first_preprocess",
+			"preprocessing_steps": [
+				{
+					"name": "delete_time_series_with_many_nan_values",
+					"features": [
+						{
+							"name":  "cpu_cycles_per_instruction",
+							"max_nans_percentage": 0.15
+						},
+						{
+							"name":  "memory_accesses_per_instruction",
+							"max_nans_percentage": 0.15
+						},
+						{
+							"name":  "cpu_usage_distribution_20",
+							"max_nans_percentage": 0.15
+						},
+						{
+							"name":  "cpu_usage_distribution_40",
+							"max_nans_percentage": 0.15
+						},
+						{
+							"name":  "cpu_usage_distribution_60",
+							"max_nans_percentage": 0.15
+						},
+						{
+							"name":  "cpu_usage_distribution_80",
+							"max_nans_percentage": 0.15
+						},
+						{
+							"name":  "cpu_usage_distribution_100",
+							"max_nans_percentage": 0.15
+						}
+					]
+				},
+				{
+					"name": "replace_nan_with_previous",
+					"features": [
+						{
+							"name":  "cpu_cycles_per_instruction"
+						},
+						{
+							"name":  "memory_accesses_per_instruction"
+						},
+						{
+							"name":  "cpu_usage_distribution_20"
+						},
+						{
+							"name":  "cpu_usage_distribution_40"
+						},
+						{
+							"name":  "cpu_usage_distribution_60"
+						},
+						{
+							"name":  "cpu_usage_distribution_80"
+						},
+						{
+							"name":  "cpu_usage_distribution_100"
+						}
+					]
+				},
+				{
+					"name": "delete_close_samples",
+					"range": 432000000000
+				},
+				{
+					"name": "delete_time_series_per_number_of_samples",
+					"min": 4000
+				}
+			]
+		}
+	},
+	"manual_seed": 1,
+	"device": "cpu"
+}

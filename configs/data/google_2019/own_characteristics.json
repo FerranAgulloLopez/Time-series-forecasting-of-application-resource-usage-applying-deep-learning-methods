@@ -1,0 +1,17 @@
+{
+  "data": {
+    "name": "google_2019",
+    "directory_path": "../data/google_2019_a/global_data/third_preprocess_cluster_selection_pca_standarized",
+    "target_feature": "cpu_maximum_usage",
+    "time_feature": "time_stamp",
+    "batch_size": 256,
+    "visualization": [
+      {
+        "name": "ChartMaxMinFeatures",
+        "chart_params": {}
+      }
+    ]
+  },
+  "manual_seed": 1,
+  "device": "cpu"
+}

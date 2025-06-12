@@ -1,0 +1,27 @@
+{
+	"data": {
+		"source": {
+			"name": "google_2019",
+			"directory_path": "../data/google_2019_a/global_data/second_preprocess_standarized",
+			"time_feature": "time_stamp",
+			"target_feature": "cpu_maximum_usage",
+			"batch_size": 128
+		},
+		"type": {
+			"name": "data_preprocess",
+			"output_directory_path": "../data/google_2019_a/global_data/third_preprocess_high_amplitude",
+			"preprocessing_steps": [
+				{
+					"name": "delete_time_series_per_amplitude",
+					"min": 6,
+					"feature": "cpu_maximum_usage"
+				},
+				{
+					"name": "replace_downward_spikes_with_previous"
+				}
+			]
+		}
+	},
+	"manual_seed": 1,
+	"device": "cpu"
+}
